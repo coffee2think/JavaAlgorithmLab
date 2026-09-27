@@ -2,54 +2,51 @@ package dev.coffee2think.programmers.lv0.q120840;
 
 public class Solution {
 
+    // 반복문 풀이
+    // 직접 조합 계산
+    // 시간복잡도: O(min(r, n-r))
+    // 공간복잡도: O(1)
     public int solution(int balls, int share) {
-        int n = balls;
+        int answer = 1;
         int r = Math.min(share, balls - share);
 
-        // nCr
-        System.out.printf(
-                "Long.MAX_VALUE=%d, 자릿수=%d\n",
-                Long.MAX_VALUE,
-                (long) Math.log10(Long.MAX_VALUE) + 1
-        );
-        for (int i = 1; i <= 30; i++) {
-            long factorial = factorial(i);
-            System.out.printf(
-                    "i=%d, i!=%d, 자릿수=%d\n",
-                    i,
-                    factorial,
-                    (long) Math.log10(factorial)
-            );
+        for (int i = 1; i <= r; i++) {
+            answer = answer * (balls - i + 1) / i;
         }
 
-        return (int) calcCombination(balls, share);
+        return answer;
     }
 
-    public long factorial(int n) {
-        if (n < 2) return 1;
+    // DP 풀이
+    // C(n,r) = C(n-1,r-1) + C(n-1,r) 점화식 이용
+    // 시간복잡도: O(nr)
+    // 공간복잡도: O(r)
+    public int dpSolution(int balls, int share) {
+        int r = Math.min(share, balls - share);
+        int[] dp = new int[r + 1];
 
-        long rtn = 1;
+        dp[0] = 1; // C(n, 0) = 1
 
-        for (int i = 2; i <= n; i++) {
-            rtn *= i;
+        for (int n = 1; n <= balls; n++) {
+            for (int k = Math.min(n, r); k >= 1; k--) {
+                dp[k] += dp[k - 1];
+            }
         }
 
-        return rtn;
+        return dp[r];
     }
 
-    public long calcCombination(int n, int r) {
-        if (r < 1) return 1;
+    // 재귀 풀이 - 참고
+    // C(n, r) = C(n - 1, r - 1) * n / r 점화식 이용
+    // 시간복잡도: O(min(r, n-r))
+    // 공간복잡도: O(min(r, n-r))
+    public long recursiveSolution(int balls, int share) {
+        share = Math.min(share, balls - share);
 
-        int s = Math.min(r, n - r);
-
-        long result = 1L;
-        for (int i = 0; i < s; i++) {
-            result *= n - i;
-        }
-        for (int i = 0; i < s; i++) {
-            result /= s - i;
+        if (share == 0) {
+            return 1;
         }
 
-        return result;
+        return recursiveSolution(balls - 1, share - 1) * balls / share;
     }
 }
