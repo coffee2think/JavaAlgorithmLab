@@ -1,0 +1,47 @@
+# Gradle
+.gradle/
+**/build/
+
+# Java build artifacts and JVM crash logs
+*.class
+hs_err_pid*
+replay_pid*
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse / Spring Tool Suite
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+bin/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Visual Studio Code
+.vscode/
+
+# Local environment and log files
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
