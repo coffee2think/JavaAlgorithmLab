@@ -19,3 +19,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+jmh {
+    includes = [project.findProperty('jmhInclude') ?: '.*']
+}
