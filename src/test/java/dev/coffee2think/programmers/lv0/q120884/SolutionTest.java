@@ -27,7 +27,13 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("provideTestCases")
-    void solutionTest(int chicken, int expected) {
-        assertEquals(expected, solution.solution(chicken));
+    void solutionTest(int n, int expected) {
+        assertEquals(expected, solution.solution(n));
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideTestCases")
+    void mathematicSolutionTest(int n, int expected) {
+        assertEquals(expected, solution.mathematicSolution(n));
     }
 }
