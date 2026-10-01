@@ -27,7 +27,7 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("provideTestCases")
-    void solutionBinarySearch1Test(String polynomial, String expected) {
+    void solutionTest(String polynomial, String expected) {
         assertEquals(expected, solution.solution(polynomial));
     }
 }
